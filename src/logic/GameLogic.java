@@ -47,5 +47,9 @@ public class GameLogic {
 	public void startNewGame() {
 		gameTimer.start();
 	}
+
+	public Canvas getGameCanvas() {
+		return gameCanvas;
+	}
 	
 }
