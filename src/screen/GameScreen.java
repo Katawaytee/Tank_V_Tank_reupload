@@ -5,6 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -17,6 +18,8 @@ public class GameScreen extends StackPane {
 	public static final String redTankURL = ClassLoader.getSystemResource("").toString();
 	private Canvas gameCanvas;
 	private AnchorPane buttonPane;
+	public static String keyPressed;
+	public static boolean isPressingKey;
 	
 	public GameScreen() {
 		super();
@@ -25,6 +28,8 @@ public class GameScreen extends StackPane {
 		gameCanvas = GameLogic.getInstance().getGameCanvas();
 		getChildren().add(gameCanvas);
 		createButtonPane();
+		addListener();
+		setFocused(true);
 	}
 	
 	private void createBackground() {
@@ -48,6 +53,25 @@ public class GameScreen extends StackPane {
 		AnchorPane.setTopAnchor(pauseButton,120.0);
 		AnchorPane.setLeftAnchor(pauseButton,440.0);
 		getChildren().add(buttonPane);
+	}
+	
+	private void addListener() {
+		
+		setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				GameScreen.keyPressed = event.getCode().toString();
+				GameScreen.isPressingKey = true;
+			}
+		});
+		
+		setOnKeyReleased(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				GameScreen.isPressingKey = false;
+			}
+		});
+		
 	}
 	
 }

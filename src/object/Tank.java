@@ -1,11 +1,15 @@
 package object;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import logic.GameLogic;
+import screen.GameScreen;
 
 public class Tank extends Entity {
 	
 	private int life;
 	private String color;
+	private Image tankImage;
 	
 	public Tank(double x, double y, String color) {
 		this.x = x;
@@ -14,6 +18,11 @@ public class Tank extends Entity {
 		speed = 5;
 		life = 3;
 		this.color = color;
+		if (this.color.equals("green")) {
+			tankImage = new Image(GameScreen.greenTankURL);
+		} else if (color.equals("red")) {
+			tankImage = new Image(GameScreen.redTankURL);
+		}
 	}
 
 	public void move(boolean forward) {
@@ -42,12 +51,22 @@ public class Tank extends Entity {
 		life--;
 	}
 	
-	public void draw(GraphicsContext gc) {
-		
+	private void draw(GraphicsContext gc) {
+		gc.translate(x, y);
+		gc.drawImage(tankImage, -50, -50, 100, 100);
+		gc.rotate(angle);
 	}
 	
 	public void update() {
+		if (GameScreen.isPressingKey) {
+			if (color.equals("green")) {
+				
+			} else if (color.equals("red")) {
+				
+			}
+		}
 		
+		draw(GameLogic.getInstance().getGameCanvas().getGraphicsContext2D());
 	}
 	
 }
