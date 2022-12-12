@@ -10,4 +10,8 @@ public abstract class Entity implements Updatable, Moveable {
 	private int speed;
 	private int angle;
 	
+	public abstract void move();
+	
+	public abstract void update();
+	
 }
