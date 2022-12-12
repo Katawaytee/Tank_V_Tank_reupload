@@ -1,7 +1,7 @@
 package object;
 
 public class Tank extends Entity {
-
+	
 	public Tank(double x, double y) {
 		this.x = x;
 		this.y = y;
@@ -19,4 +19,16 @@ public class Tank extends Entity {
 		}
 	}
 
+	private void turn(boolean left) {
+		if (left) {
+			angle -= 3;
+			if (angle < 0)
+				angle += 360;
+		} else {
+			angle += 3;
+			if (angle >= 360)
+				angle -= 360;
+		}
+	}
+	
 }
