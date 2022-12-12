@@ -16,4 +16,20 @@ public class Bullet extends Entity {
 		destroyed = false;
 	}
 	
+	public void move(boolean forward) {
+		
+	}
+	
+	public void collide(Tank tank) {
+		
+	}
+	
+	public void draw() {
+		
+	}
+	
+	public void update() {
+		
+	}
+	
 }
