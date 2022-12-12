@@ -11,6 +11,7 @@ public class GameScreen extends StackPane {
 	public GameScreen() {
 		super();
 		backgroundURL = ClassLoader.getSystemResource("").toString();
+		createBackground();
 	}
 	
 	private void createBackground() {
