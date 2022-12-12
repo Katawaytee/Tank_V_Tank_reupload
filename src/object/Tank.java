@@ -5,13 +5,15 @@ import javafx.scene.canvas.GraphicsContext;
 public class Tank extends Entity {
 	
 	private int life;
+	private String color;
 	
-	public Tank(double x, double y) {
+	public Tank(double x, double y, String color) {
 		this.x = x;
 		this.y = y;
 		angle = 0;
 		speed = 5;
 		life = 3;
+		this.color = color;
 	}
 
 	public void move(boolean forward) {

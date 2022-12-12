@@ -7,6 +7,8 @@ import javafx.scene.layout.StackPane;
 public class GameScreen extends StackPane {
 
 	private final String backgroundURL;
+	public static final String greenTankURL = ClassLoader.getSystemResource("").toString();
+	public static final String redTankURL = ClassLoader.getSystemResource("").toString();
 	
 	public GameScreen() {
 		super();
