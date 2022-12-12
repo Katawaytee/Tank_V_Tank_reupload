@@ -1,12 +1,17 @@
 package object;
 
+import javafx.scene.canvas.GraphicsContext;
+
 public class Tank extends Entity {
+	
+	private int life;
 	
 	public Tank(double x, double y) {
 		this.x = x;
 		this.y = y;
-		this.angle = 0;
-		this.speed = 5;
+		angle = 0;
+		speed = 5;
+		life = 3;
 	}
 
 	public void move(boolean forward) {
@@ -29,6 +34,18 @@ public class Tank extends Entity {
 			if (angle >= 360)
 				angle -= 360;
 		}
+	}
+	
+	public void hitByBullet() {
+		life--;
+	}
+	
+	public void draw(GraphicsContext gc) {
+		
+	}
+	
+	public void update() {
+		
 	}
 	
 }
