@@ -1,5 +1,6 @@
 package object;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Bullet extends Entity {
@@ -24,7 +25,7 @@ public class Bullet extends Entity {
 		
 	}
 	
-	public void draw() {
+	public void draw(GraphicsContext gc) {
 		
 	}
 	
