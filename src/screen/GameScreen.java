@@ -23,6 +23,7 @@ public class GameScreen extends MyBaseScreen {
 	private Canvas gameCanvas;
 	private AnchorPane buttonPane;
 	private HeartPane heartPane;
+	public static AudioClip takeShotSound = new AudioClip(ClassLoader.getSystemResource("audio/TakeShot.wav").toString());
 	public static AudioClip explosionSound = new AudioClip(ClassLoader.getSystemResource("audio/Explosion.wav").toString());
 	public static ArrayList<String> keyPressed = new ArrayList<String>();
 	public static boolean isPressingKey;

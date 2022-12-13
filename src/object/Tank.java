@@ -28,12 +28,18 @@ public class Tank extends Entity {
 	}
 
 	public void move(boolean forward) {
+		double nextX;
+		double nextY;
 		if (forward) {
-			y -= Math.cos(Math.toRadians(angle)) * speed;
-			x += Math.sin(Math.toRadians(angle)) * speed;
+			nextY = y - Math.cos(Math.toRadians(angle)) * speed;
+			nextX = x + Math.sin(Math.toRadians(angle)) * speed;
 		} else {
-			y += Math.cos(Math.toRadians(angle)) * speed;
-			x -= Math.sin(Math.toRadians(angle)) * speed;
+			nextY = y + Math.cos(Math.toRadians(angle)) * speed;
+			nextX = x - Math.sin(Math.toRadians(angle)) * speed;
+		}
+		if((nextY<=720&&nextY>=0)&&(nextX<=1080&&nextX>=0)) {
+			x = nextX;
+			y = nextY;
 		}
 	}
 
@@ -63,13 +69,14 @@ public class Tank extends Entity {
 
 	public void hitByBullet(GraphicsContext gc) {
 		life--;
-		GameScreen.explosionSound.play();
+		GameScreen.takeShotSound.play();
 		GameScreen.get().getHeartPane().removeHeart(color, life);
 		if (die()) {
 			gc.save();
 			gc.translate(x, y);
 			gc.drawImage(bombImage, -75, -75, 150, 150);
 			gc.restore();
+			GameScreen.explosionSound.play();
 			GameLogic.getInstance().pauseGame();
 		}
 	}
