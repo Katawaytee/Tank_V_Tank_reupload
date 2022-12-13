@@ -2,7 +2,6 @@ package object;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import logic.GameLogic;
 import screen.GameScreen;
 
@@ -62,6 +61,9 @@ public class Tank extends Entity {
 
 	public void hitByBullet() {
 		life--;
+		if (life <= 0) {
+			GameLogic.getInstance().pauseGame();
+		}
 	}
 
 	private void draw(GraphicsContext gc) {

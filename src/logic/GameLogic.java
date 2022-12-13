@@ -47,6 +47,10 @@ public class GameLogic {
 	public void startNewGame() {
 		gameTimer.start();
 	}
+	
+	public void pauseGame() {
+		gameTimer.stop();
+	}
 
 	public Canvas getGameCanvas() {
 		return gameCanvas;
