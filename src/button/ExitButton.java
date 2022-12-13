@@ -1,20 +1,20 @@
 package button;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
-import logic.GameLogic;
 
-public class PauseButton extends MyBaseButton {
+public class ExitButton extends MyBaseButton {
 
-	public PauseButton() {
+	public ExitButton() {
 		super();
 		pictureURL = ClassLoader.getSystemResource("").toString();
 		addPicture();
 		addCircle();
 		addListener();
 	}
-	
+
 	@Override
 	protected void addListener() {
 		
@@ -35,8 +35,7 @@ public class PauseButton extends MyBaseButton {
 		circle.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				setEffect(null);
-				GameLogic.getInstance().pauseGame();
+				Platform.exit();
 			}
 		});
 		

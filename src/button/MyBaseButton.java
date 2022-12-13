@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public abstract class MyBaseButton extends StackPane {
@@ -16,9 +17,6 @@ public abstract class MyBaseButton extends StackPane {
 		setWidth(50);
 		setHeight(50);
 		setAlignment(Pos.CENTER);
-		addPicture();
-		addCircle();
-		addListener();
 	}
 	
 	protected void addPicture() {
@@ -29,7 +27,7 @@ public abstract class MyBaseButton extends StackPane {
 	}
 	
 	protected void addCircle() {
-		circle = new Circle(25);
+		circle = new Circle(25,Color.TRANSPARENT);
 		getChildren().add(circle);
 	}
 	
