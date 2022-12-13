@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import button.PauseButton;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,6 +23,7 @@ public class GameScreen extends StackPane {
 	private AnchorPane buttonPane;
 	public static ArrayList<String> keyPressed;
 	public static boolean isPressingKey;
+	public static Scene scene;
 	
 	private GameScreen() {
 		super();

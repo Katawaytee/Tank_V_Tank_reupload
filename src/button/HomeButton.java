@@ -3,6 +3,9 @@ package button;
 import javafx.event.EventHandler;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import screen.GameScreen;
+import screen.HomeScreen;
 
 public class HomeButton extends MyBaseButton {
 
@@ -34,7 +37,9 @@ public class HomeButton extends MyBaseButton {
 		circle.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-			// TODO
+				StackPane newRoot = new StackPane();
+				newRoot.getChildren().add(new HomeScreen(1080, 720));
+				GameScreen.scene.setRoot(newRoot);
 			}
 		});
 		

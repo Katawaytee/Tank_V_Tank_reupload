@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
+import logic.GameLogic;
 
 public class HomeScreen extends Pane{
 	private final String BackgroundURL;
@@ -77,8 +78,8 @@ public class HomeScreen extends Pane{
 
 			@Override
 			public void handle(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				GameScreen.scene.setRoot(GameScreen.get());
+				GameLogic.getInstance().startNewGame();
 			}
 		});
 		
