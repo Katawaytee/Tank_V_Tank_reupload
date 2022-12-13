@@ -62,7 +62,7 @@ public class GameLogic {
 	}
 	
 	public void resumeGame() {
-		GameScreen.get().getChildren().remove(3);
+		GameScreen.get().getChildren().remove(4);
 		gameTimer.start();
 	}
 
