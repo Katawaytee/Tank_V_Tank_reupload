@@ -1,5 +1,6 @@
 package button;
 
+import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
@@ -14,6 +15,10 @@ public abstract class MyBaseButton extends StackPane {
 		super();
 		setWidth(50);
 		setHeight(50);
+		setAlignment(Pos.CENTER);
+		addPicture();
+		addCircle();
+		addListener();
 	}
 	
 	protected void addPicture() {
