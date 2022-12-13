@@ -2,15 +2,16 @@ package object;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import logic.GameLogic;
 import screen.GameScreen;
 
 public class Tank extends Entity {
-	
+
 	private int life;
 	private String color;
 	private Image tankImage;
-	
+
 	public Tank(double x, double y, String color) {
 		this.x = x;
 		this.y = y;
@@ -46,11 +47,22 @@ public class Tank extends Entity {
 				angle -= 360;
 		}
 	}
-	
+
+	public void shoot() {
+		Color bulletColor;
+		if (color.equals("green")) {
+			bulletColor = Color.GREEN;
+		} else {
+			bulletColor = Color.RED;
+		}
+		Bullet newBullet = new Bullet(x, y, angle, bulletColor);
+		GameLogic.getInstance().getBullets().add(newBullet);
+	}
+
 	public void hitByBullet() {
 		life--;
 	}
-	
+
 	private void draw(GraphicsContext gc) {
 		gc.save();
 		gc.translate(x, y);
@@ -58,7 +70,7 @@ public class Tank extends Entity {
 		gc.rotate(angle);
 		gc.restore();
 	}
-	
+
 	public void update() {
 		if (GameScreen.isPressingKey) {
 			if (color.equals("green")) {
@@ -91,5 +103,5 @@ public class Tank extends Entity {
 		}
 		draw(GameLogic.getInstance().getGameCanvas().getGraphicsContext2D());
 	}
-	
+
 }

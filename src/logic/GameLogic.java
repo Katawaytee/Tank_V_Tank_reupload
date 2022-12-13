@@ -14,23 +14,23 @@ public class GameLogic {
 	private ArrayList<Bullet> bullets;
 	private Canvas gameCanvas;
 	private AnimationTimer gameTimer;
-	
+
 	private GameLogic() {
 		tanks = new Tank[2];
-		tanks[0] = new Tank(600,500,"red");
-		tanks[1] = new Tank(300,200,"green");
+		tanks[0] = new Tank(600, 500, "red");
+		tanks[1] = new Tank(300, 200, "green");
 		bullets = new ArrayList<Bullet>();
-		gameCanvas = new Canvas(1080,720);
+		gameCanvas = new Canvas(1080, 720);
 		initializeGameTimer();
 	}
-	
+
 	public static GameLogic getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new GameLogic();
 		}
 		return instance;
 	}
-	
+
 	private void initializeGameTimer() {
 		gameTimer = new AnimationTimer() {
 			@Override
@@ -43,7 +43,7 @@ public class GameLogic {
 			}
 		};
 	}
-	
+
 	public void startNewGame() {
 		gameTimer.start();
 	}
@@ -51,5 +51,9 @@ public class GameLogic {
 	public Canvas getGameCanvas() {
 		return gameCanvas;
 	}
-	
+
+	public ArrayList<Bullet> getBullets() {
+		return bullets;
+	}
+
 }
