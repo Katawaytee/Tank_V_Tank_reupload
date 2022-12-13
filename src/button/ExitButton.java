@@ -12,11 +12,10 @@ public class ExitButton extends MyBaseButton {
 		pictureURL = ClassLoader.getSystemResource("exit.png").toString();
 		addPicture();
 		addCircle();
-		addListener();
 	}
 
 	@Override
-	protected void addListener() {
+	public void addListener() {
 		
 		circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override

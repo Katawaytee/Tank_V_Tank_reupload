@@ -31,6 +31,6 @@ public abstract class MyBaseButton extends StackPane {
 		getChildren().add(circle);
 	}
 	
-	protected abstract void addListener();
+	public abstract void addListener();
 	
 }

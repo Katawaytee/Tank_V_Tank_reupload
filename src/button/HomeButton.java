@@ -14,11 +14,10 @@ public class HomeButton extends MyBaseButton {
 		pictureURL = ClassLoader.getSystemResource("home.png").toString();
 		addPicture();
 		addCircle();
-		addListener();
 	}
 	
 	@Override
-	protected void addListener() {
+	public void addListener() {
 		
 		circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override

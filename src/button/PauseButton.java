@@ -16,7 +16,7 @@ public class PauseButton extends MyBaseButton {
 	}
 	
 	@Override
-	protected void addListener() {
+	public void addListener() {
 		
 		circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override

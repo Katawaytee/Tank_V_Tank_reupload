@@ -1,7 +1,10 @@
 package screen;
 
+import java.util.ArrayList;
+
 import button.ExitButton;
 import button.HomeButton;
+import button.MyBaseButton;
 import button.PlayButton;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -35,11 +38,18 @@ public class PauseScreen extends StackPane {
 	}
 	
 	private void addButtons() {
+		ArrayList<MyBaseButton> buttons = new ArrayList<MyBaseButton>();
 		HomeButton homeButton = new HomeButton();
 		PlayButton playButton = new PlayButton();
 		ExitButton exitButton = new ExitButton();
 		AnchorPane anchorPane = new AnchorPane();
+		buttons.add(homeButton);
+		buttons.add(playButton);
+		buttons.add(exitButton);
 		anchorPane.getChildren().addAll(homeButton,playButton,exitButton);
+		for (MyBaseButton button : buttons) {
+			button.addListener();
+		}
 		AnchorPane.setTopAnchor(homeButton, 335.0);
 		AnchorPane.setTopAnchor(playButton, 335.0);
 		AnchorPane.setTopAnchor(exitButton, 335.0);

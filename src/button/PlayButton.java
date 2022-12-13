@@ -13,11 +13,10 @@ public class PlayButton extends MyBaseButton {
 		pictureURL = ClassLoader.getSystemResource("play.png").toString();
 		addPicture();
 		addCircle();
-		addListener();
 	}
 	
 	@Override
-	protected void addListener() {
+	public void addListener() {
 		
 		circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
