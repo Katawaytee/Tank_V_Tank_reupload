@@ -7,8 +7,8 @@ public class HomeButton extends MyBaseButton {
 	
 	private static String pictureURL = ClassLoader.getSystemResource("icon/home.png").toString();
 	
-	public HomeButton() {
-		super(50,50,pictureURL);
+	public HomeButton(int width,int height) {
+		super(width,height,pictureURL);
 		
 	}
 

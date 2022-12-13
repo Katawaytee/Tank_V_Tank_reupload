@@ -2,6 +2,7 @@ package screen;
 
 
 import button.StartButton;
+import button.TutorialButton;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -39,11 +40,15 @@ public class HomeScreen extends MyBaseScreen{
 	private void createStartButton() {
 		// TODO Auto-generated method stub
 		AnchorPane anchorPane = new AnchorPane();
-		StartButton startButton = new StartButton();
+		StartButton startButton = new StartButton(125,125);
+		TutorialButton tutorialButton = new TutorialButton(75, 75);
 		
-		anchorPane.getChildren().add(startButton);
+		anchorPane.getChildren().addAll(startButton,tutorialButton);
 		AnchorPane.setTopAnchor(startButton, 525.0);
 		AnchorPane.setLeftAnchor(startButton, 470.0);
+		
+		AnchorPane.setTopAnchor(tutorialButton, 20.0);
+		AnchorPane.setLeftAnchor(tutorialButton, 990.0);
 		
 		getChildren().add(anchorPane);
 				

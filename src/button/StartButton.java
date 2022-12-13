@@ -9,8 +9,9 @@ public class StartButton extends MyBaseButton {
 
 	private static String pictureURL = ClassLoader.getSystemResource("icon/play.png").toString();
 	
-	public StartButton() {
-		super(125,125,pictureURL);
+	public StartButton(int width,int height) {
+		super(width,height,pictureURL);
+		
 	}
 	
 	

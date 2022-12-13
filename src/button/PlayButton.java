@@ -7,8 +7,9 @@ public class PlayButton extends MyBaseButton {
 
 	private static String pictureURL = ClassLoader.getSystemResource("icon/play.png").toString();
 	
-	public PlayButton() {
-		super(50,50,pictureURL);
+	public PlayButton(int width,int height) {
+		super(width,height,pictureURL);
+		
 	}
 	
 	@Override

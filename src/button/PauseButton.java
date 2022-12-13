@@ -6,8 +6,9 @@ public class PauseButton extends MyBaseButton {
 	
 	private static String pictureURL = ClassLoader.getSystemResource("icon/pause.png").toString();
 	
-	public PauseButton() {
-		super(80,80,pictureURL);
+	public PauseButton(int width,int height) {
+		super(width,height,pictureURL);
+		
 	}
 
 	@Override

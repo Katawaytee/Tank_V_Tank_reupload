@@ -36,15 +36,15 @@ public class PauseScreen extends MyBaseScreen {
 	}
 	
 	private void addButtons() {
-		HomeButton homeButton = new HomeButton();
-		PlayButton playButton = new PlayButton();
-		ExitButton exitButton = new ExitButton();
+		HomeButton homeButton = new HomeButton(60,60);
+		PlayButton playButton = new PlayButton(60,60);
+		ExitButton exitButton = new ExitButton(60,60);
 		AnchorPane anchorPane = new AnchorPane();
 		anchorPane.getChildren().addAll(homeButton,playButton,exitButton);
 		
-		AnchorPane.setTopAnchor(homeButton, 335.0);
-		AnchorPane.setTopAnchor(playButton, 335.0);
-		AnchorPane.setTopAnchor(exitButton, 335.0);
+		AnchorPane.setTopAnchor(homeButton, 330.0);
+		AnchorPane.setTopAnchor(playButton, 330.0);
+		AnchorPane.setTopAnchor(exitButton, 330.0);
 		AnchorPane.setLeftAnchor(homeButton, 427.5);
 		AnchorPane.setLeftAnchor(playButton, 515.0);
 		AnchorPane.setLeftAnchor(exitButton, 602.5);

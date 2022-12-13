@@ -65,7 +65,7 @@ public class GameScreen extends MyBaseScreen {
 	
 	private void createButtonPane() {
 		buttonPane = new AnchorPane();
-		PauseButton pauseButton = new PauseButton();
+		PauseButton pauseButton = new PauseButton(80,80);
 		buttonPane.getChildren().add(pauseButton);
 		AnchorPane.setTopAnchor(pauseButton,20.0);
 		AnchorPane.setLeftAnchor(pauseButton,500.0);

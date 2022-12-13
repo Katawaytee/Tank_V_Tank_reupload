@@ -6,8 +6,9 @@ public class ExitButton extends MyBaseButton {
 	
 	private static String pictureURL = ClassLoader.getSystemResource("icon/exit.png").toString();
 	
-	public ExitButton() {
-		super(50,50,pictureURL);
+	public ExitButton(int width,int height) {
+		super(width,height,pictureURL);
+		
 	}
 
 	@Override
