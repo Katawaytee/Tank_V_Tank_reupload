@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import button.PauseButton;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,6 +15,7 @@ import logic.GameLogic;
 
 public class GameScreen extends StackPane {
 
+	private static GameScreen gameScreen = null;
 	private final String backgroundURL;
 	public static final String greenTankURL = ClassLoader.getSystemResource("").toString();
 	public static final String redTankURL = ClassLoader.getSystemResource("").toString();
@@ -22,7 +24,7 @@ public class GameScreen extends StackPane {
 	public static ArrayList<String> keyPressed;
 	public static boolean isPressingKey;
 	
-	public GameScreen() {
+	private GameScreen() {
 		super();
 		setWidth(1080);
 		setHeight(720);
@@ -33,6 +35,13 @@ public class GameScreen extends StackPane {
 		createButtonPane();
 		addListener();
 		setFocused(true);
+	}
+	
+	public static GameScreen get() {
+		if (gameScreen == null) {
+			gameScreen = new GameScreen();
+		}
+		return gameScreen;
 	}
 	
 	private void createBackground() {
@@ -70,6 +79,10 @@ public class GameScreen extends StackPane {
 				GameScreen.isPressingKey = false;
 			}
 		});
+		
+	}
+	
+	public static void addChildren(Node node) {
 		
 	}
 	
