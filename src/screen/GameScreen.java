@@ -70,6 +70,7 @@ public class GameScreen extends StackPane {
 		setOnKeyReleased(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
+				GameScreen.keyPressed.remove(event.getCode().toString());
 				GameScreen.isPressingKey = false;
 			}
 		});
