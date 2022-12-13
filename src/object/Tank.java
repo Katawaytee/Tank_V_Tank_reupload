@@ -49,14 +49,14 @@ public class Tank extends Entity {
 	}
 
 	public void shoot() {
-		Color bulletColor;
+		Tank anotherTank;
 		if (color.equals("green")) {
-			bulletColor = Color.GREEN;
+			anotherTank = GameLogic.getInstance().getRedTank();
 		} else {
-			bulletColor = Color.RED;
+			anotherTank = GameLogic.getInstance().getGreenTank();
 		}
 		double radAngle = Math.toRadians(angle);
-		Bullet newBullet = new Bullet(x + (71 * Math.sin(radAngle)), y + (71 * Math.cos(radAngle)), angle, bulletColor);
+		Bullet newBullet = new Bullet(x + (71 * Math.sin(radAngle)), y + (71 * Math.cos(radAngle)), angle, anotherTank);
 		GameLogic.getInstance().getBullets().add(newBullet);
 	}
 
@@ -105,4 +105,8 @@ public class Tank extends Entity {
 		draw(GameLogic.getInstance().getGameCanvas().getGraphicsContext2D());
 	}
 
+	public String getColor() {
+		return color;
+	}
+	
 }

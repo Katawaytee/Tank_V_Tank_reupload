@@ -8,19 +8,30 @@ public class Bullet extends Entity {
 
 	private boolean destroyed;
 	private Color color;
+	private double distanceTravelled;
+	private Tank anotherTank;
 	
-	public Bullet(double x, double y, int angle, Color color) {
+	public Bullet(double x, double y, int angle, Tank anotherTank) {
 		this.x = x;
 		this.y = y;
 		this.angle = angle;
 		speed = 15;
-		this.color = color;
+		this.anotherTank = anotherTank;
+		if (this.anotherTank.getColor().equals("green")) {
+			color = Color.RED;
+		} else {
+			color = Color.GREEN;
+		}
+		distanceTravelled = 0;
 		destroyed = false;
 	}
 	
 	public void move(boolean forward) {
-		x += Math.cos(Math.toRadians(angle)) * speed;
-		y += Math.sin(Math.toRadians(angle)) * speed;
+		double dx = Math.cos(Math.toRadians(angle)) * speed;
+		double dy = Math.sin(Math.toRadians(angle)) * speed;
+		x += dx;
+		y += dy;
+		distanceTravelled += Math.hypot(dx,dy);
 	}
 	
 	private void collide(Tank tank) {
@@ -35,7 +46,29 @@ public class Bullet extends Entity {
 	}
 	
 	public void update() {
+		if (destroyed) {
+			return;
+		} else if (isCollide()) {
+			collide(anotherTank);
+			destroyed = true;
+			return;
+		} else if (distanceTravelled >= 300) {
+			destroyed = true;
+			return;
+		}
 		draw(GameLogic.getInstance().getGameCanvas().getGraphicsContext2D());
+	}
+	
+	private boolean isCollide() {
+		double dx = x - anotherTank.x;
+		double dy = y - anotherTank.y;
+		double dRadian = Math.atan(Math.abs(dy) / Math.abs(dx));
+		double minDistanceBetween = 31.39 / Math.cos(dRadian);
+		double currentDistanceBetween = Math.hypot(Math.abs(dx), Math.abs(dy));
+		if (currentDistanceBetween <= minDistanceBetween) {
+			return true;
+		}
+		return false;
 	}
 	
 }

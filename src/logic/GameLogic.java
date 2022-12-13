@@ -55,5 +55,13 @@ public class GameLogic {
 	public ArrayList<Bullet> getBullets() {
 		return bullets;
 	}
+	
+	public Tank getGreenTank() {
+		return tanks[1];
+	}
 
+	public Tank getRedTank() {
+		return tanks[0];
+	}
+	
 }
