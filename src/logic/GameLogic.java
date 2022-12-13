@@ -44,8 +44,6 @@ public class GameLogic {
 				for (Bullet bullet : bullets) {
 					bullet.update();
 				}
-				GameScreen.keyPressed.remove("ENTER");
-				GameScreen.keyPressed.remove("SPACE");
 			}
 		};
 	}

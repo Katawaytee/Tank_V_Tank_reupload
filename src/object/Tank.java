@@ -1,5 +1,6 @@
 package object;
 
+import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import logic.GameLogic;
@@ -11,14 +12,16 @@ public class Tank extends Entity {
 	private String color;
 	private Image tankImage;
 	private Image bombImage;
+	private boolean canShoot;
 
 	public Tank(double x, double y, String color) {
 		this.x = x;
 		this.y = y;
 		angle = 0;
-		speed = 5;
+		speed = 3;
 		life = 3;
 		this.color = color;
+		this.canShoot=true;
 		if (this.color.equals("green")) {
 			tankImage = new Image(GameScreen.greenTankURL);
 		} else if (color.equals("red")) {
@@ -56,15 +59,40 @@ public class Tank extends Entity {
 	}
 
 	public void shoot() {
-		Tank anotherTank;
-		if (color.equals("green")) {
-			anotherTank = GameLogic.getInstance().getRedTank();
-		} else {
-			anotherTank = GameLogic.getInstance().getGreenTank();
+		if(canShoot) {
+			Thread thread = new Thread(() -> {
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {	
+						Tank anotherTank;
+						if (color.equals("green")) {
+							anotherTank = GameLogic.getInstance().getRedTank();
+						} else {
+							anotherTank = GameLogic.getInstance().getGreenTank();
+						}
+						double radAngle = Math.toRadians(angle);
+						Bullet newBullet = new Bullet(x + (50 * Math.sin(radAngle)), y - (50 * Math.cos(radAngle)), angle - 90, anotherTank);
+						GameLogic.getInstance().getBullets().add(newBullet);
+						canShoot=false;
+					}
+				});
+				
+				try {
+					Thread.sleep(750);
+				} catch (InterruptedException e) {
+					
+				}
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						canShoot=true;
+					}
+				});
+					
+		});
+		thread.start();
+		
 		}
-		double radAngle = Math.toRadians(angle);
-		Bullet newBullet = new Bullet(x + (50 * Math.sin(radAngle)), y - (50 * Math.cos(radAngle)), angle - 90, anotherTank);
-		GameLogic.getInstance().getBullets().add(newBullet);
 	}
 
 	public void hitByBullet(GraphicsContext gc) {
