@@ -1,5 +1,7 @@
 package screen;
 
+import java.util.ArrayList;
+
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
@@ -18,7 +20,7 @@ public class GameScreen extends StackPane {
 	public static final String redTankURL = ClassLoader.getSystemResource("").toString();
 	private Canvas gameCanvas;
 	private AnchorPane buttonPane;
-	public static String keyPressed;
+	public static ArrayList<String> keyPressed;
 	public static boolean isPressingKey;
 	
 	public GameScreen() {
@@ -60,7 +62,7 @@ public class GameScreen extends StackPane {
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-				GameScreen.keyPressed = event.getCode().toString();
+				GameScreen.keyPressed.add(event.getCode().toString());
 				GameScreen.isPressingKey = true;
 			}
 		});
