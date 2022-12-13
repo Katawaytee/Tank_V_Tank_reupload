@@ -55,7 +55,8 @@ public class Tank extends Entity {
 		} else {
 			bulletColor = Color.RED;
 		}
-		Bullet newBullet = new Bullet(x, y, angle, bulletColor);
+		double radAngle = Math.toRadians(angle);
+		Bullet newBullet = new Bullet(x + (71 * Math.sin(radAngle)), y + (71 * Math.cos(radAngle)), angle, bulletColor);
 		GameLogic.getInstance().getBullets().add(newBullet);
 	}
 
