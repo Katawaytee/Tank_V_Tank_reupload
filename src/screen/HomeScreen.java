@@ -21,6 +21,7 @@ import logic.GameLogic;
 public class HomeScreen extends Pane{
 	private final String BackgroundURL;
 	private final String BackgroundMusicURL;
+	private MediaPlayer music;
 	
 	public HomeScreen(int width, int height) {
 
@@ -80,6 +81,7 @@ public class HomeScreen extends Pane{
 			public void handle(MouseEvent arg0) {
 				GameLogic.getInstance().startNewGame();
 				GameScreen.scene.setRoot(GameScreen.get());
+				music.stop();
 			}
 		});
 		
@@ -92,7 +94,7 @@ public class HomeScreen extends Pane{
 	}
 	
 	private void playBackgroundMusic(String url) {
-		MediaPlayer music = new MediaPlayer(new Media(url));
+		music = new MediaPlayer(new Media(url));
 		music.setOnEndOfMedia(new Runnable() {
 		       public void run() {
 		         music.seek(Duration.ZERO);

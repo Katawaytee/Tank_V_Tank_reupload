@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 import logic.GameLogic;
 
 public class GameScreen extends StackPane {
@@ -22,6 +23,7 @@ public class GameScreen extends StackPane {
 	private Canvas gameCanvas;
 	private AnchorPane buttonPane;
 	private HeartPane heartPane;
+	public static AudioClip explosionSound = new AudioClip(ClassLoader.getSystemResource("Explosion.wav").toString());;
 	public static ArrayList<String> keyPressed = new ArrayList<String>();
 	public static boolean isPressingKey;
 	public static Scene scene;
