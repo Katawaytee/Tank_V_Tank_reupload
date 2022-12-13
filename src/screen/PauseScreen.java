@@ -24,7 +24,7 @@ public class PauseScreen extends StackPane {
 	private void addButtonPane() {
 		buttonPane = new Canvas(1080,720);
 		GraphicsContext gc = buttonPane.getGraphicsContext2D();
-		gc.setFill(new Color(178, 240, 248, 0.4));
+		gc.setFill(Color.rgb(178, 240, 248, 0.4));
 		gc.fillRect(0,0,1080,720);
 		gc.save();
 		gc.translate(540,360);
@@ -40,12 +40,12 @@ public class PauseScreen extends StackPane {
 		ExitButton exitButton = new ExitButton();
 		AnchorPane anchorPane = new AnchorPane();
 		anchorPane.getChildren().addAll(homeButton,playButton,exitButton);
-		AnchorPane.setTopAnchor(homeButton, 310.0);
-		AnchorPane.setTopAnchor(playButton, 310.0);
-		AnchorPane.setTopAnchor(exitButton, 310.0);
-		AnchorPane.setLeftAnchor(homeButton, 237.5);
-		AnchorPane.setLeftAnchor(playButton, 325.0);
-		AnchorPane.setLeftAnchor(exitButton, 412.5);
+		AnchorPane.setTopAnchor(homeButton, 335.0);
+		AnchorPane.setTopAnchor(playButton, 335.0);
+		AnchorPane.setTopAnchor(exitButton, 335.0);
+		AnchorPane.setLeftAnchor(homeButton, 427.5);
+		AnchorPane.setLeftAnchor(playButton, 515.0);
+		AnchorPane.setLeftAnchor(exitButton, 602.5);
 		getChildren().add(anchorPane);
 	}
 	

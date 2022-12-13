@@ -9,7 +9,7 @@ public class ExitButton extends MyBaseButton {
 
 	public ExitButton() {
 		super();
-		pictureURL = ClassLoader.getSystemResource("").toString();
+		pictureURL = ClassLoader.getSystemResource("exit.png").toString();
 		addPicture();
 		addCircle();
 		addListener();

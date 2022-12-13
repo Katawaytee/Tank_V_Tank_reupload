@@ -17,11 +17,11 @@ public class GameScreen extends StackPane {
 
 	private static GameScreen gameScreen = null;
 	private final String backgroundURL;
-	public static final String greenTankURL = ClassLoader.getSystemResource("").toString();
-	public static final String redTankURL = ClassLoader.getSystemResource("").toString();
+	public static final String greenTankURL = ClassLoader.getSystemResource("greenTank.png").toString();
+	public static final String redTankURL = ClassLoader.getSystemResource("redTank.png").toString();
 	private Canvas gameCanvas;
 	private AnchorPane buttonPane;
-	public static ArrayList<String> keyPressed;
+	public static ArrayList<String> keyPressed = new ArrayList<String>();
 	public static boolean isPressingKey;
 	public static Scene scene;
 	
@@ -29,9 +29,10 @@ public class GameScreen extends StackPane {
 		super();
 		setWidth(1080);
 		setHeight(720);
-		backgroundURL = ClassLoader.getSystemResource("").toString();
+		backgroundURL = ClassLoader.getSystemResource("grassBackground.jpg").toString();
 		createBackground();
 		gameCanvas = GameLogic.getInstance().getGameCanvas();
+		gameCanvas.setVisible(true);
 		getChildren().add(gameCanvas);
 		createButtonPane();
 		addListener();
@@ -45,10 +46,15 @@ public class GameScreen extends StackPane {
 		return gameScreen;
 	}
 	
+	public static void resetGameScreen() {
+		gameScreen = null;
+		GameScreen.get();
+	}
+	
 	private void createBackground() {
 		ImageView background = new ImageView(new Image(backgroundURL));
 		background.setPreserveRatio(true);
-		background.setFitWidth(1080);
+		background.setFitWidth(1500);
 		getChildren().add(background);
 	}
 	
@@ -56,8 +62,8 @@ public class GameScreen extends StackPane {
 		buttonPane = new AnchorPane();
 		PauseButton pauseButton = new PauseButton();
 		buttonPane.getChildren().add(pauseButton);
-		AnchorPane.setTopAnchor(pauseButton,120.0);
-		AnchorPane.setLeftAnchor(pauseButton,440.0);
+		AnchorPane.setTopAnchor(pauseButton,20.0);
+		AnchorPane.setLeftAnchor(pauseButton,515.0);
 		getChildren().add(buttonPane);
 	}
 	
@@ -70,6 +76,7 @@ public class GameScreen extends StackPane {
 					GameScreen.keyPressed.add(event.getCode().toString());
 				}
 				GameScreen.isPressingKey = true;
+				System.out.println(keyPressed);
 			}
 		});
 		

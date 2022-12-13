@@ -9,7 +9,7 @@ public class PauseButton extends MyBaseButton {
 
 	public PauseButton() {
 		super();
-		pictureURL = ClassLoader.getSystemResource("").toString();
+		pictureURL = ClassLoader.getSystemResource("pause.png").toString();
 		addPicture();
 		addCircle();
 		addListener();

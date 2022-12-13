@@ -41,7 +41,7 @@ public class Bullet extends Entity {
 	
 	private void draw(GraphicsContext gc) {
 		gc.setFill(color);
-		double radius = 20;
+		double radius = 5;
 		gc.fillOval(x - radius, y - radius, radius * 2, radius * 2);
 	}
 	
@@ -50,7 +50,6 @@ public class Bullet extends Entity {
 			return;
 		} else if (isCollide()) {
 			collide(anotherTank);
-			destroyed = true;
 			return;
 		} else if (distanceTravelled >= 300) {
 			destroyed = true;

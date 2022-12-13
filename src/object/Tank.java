@@ -27,11 +27,11 @@ public class Tank extends Entity {
 
 	public void move(boolean forward) {
 		if (forward) {
-			x += Math.cos(Math.toRadians(angle)) * speed;
-			y += Math.sin(Math.toRadians(angle)) * speed;
+			y -= Math.cos(Math.toRadians(angle)) * speed;
+			x += Math.sin(Math.toRadians(angle)) * speed;
 		} else {
-			x -= Math.cos(Math.toRadians(angle)) * speed;
-			y -= Math.sin(Math.toRadians(angle)) * speed;
+			y += Math.cos(Math.toRadians(angle)) * speed;
+			x -= Math.sin(Math.toRadians(angle)) * speed;
 		}
 	}
 
@@ -55,12 +55,13 @@ public class Tank extends Entity {
 			anotherTank = GameLogic.getInstance().getGreenTank();
 		}
 		double radAngle = Math.toRadians(angle);
-		Bullet newBullet = new Bullet(x + (71 * Math.sin(radAngle)), y + (71 * Math.cos(radAngle)), angle, anotherTank);
+		Bullet newBullet = new Bullet(x + (50 * Math.sin(radAngle)), y - (50 * Math.cos(radAngle)), angle - 90, anotherTank);
 		GameLogic.getInstance().getBullets().add(newBullet);
 	}
 
 	public void hitByBullet() {
 		life--;
+		System.out.println(life);
 		if (die()) {
 			GameLogic.getInstance().pauseGame();
 		}
@@ -69,25 +70,28 @@ public class Tank extends Entity {
 	private void draw(GraphicsContext gc) {
 		gc.save();
 		gc.translate(x, y);
-		gc.drawImage(tankImage, -50, -50, 100, 100);
 		gc.rotate(angle);
+		gc.drawImage(tankImage, -50, -50, 100, 100);
 		gc.restore();
 	}
 
 	public void update() {
 		if (GameScreen.isPressingKey) {
 			if (color.equals("green")) {
-				if (GameScreen.keyPressed.contains("w")) {
+				if (GameScreen.keyPressed.contains("W")) {
 					move(true);
 				}
-				if (GameScreen.keyPressed.contains("s")) {
+				if (GameScreen.keyPressed.contains("S")) {
 					move(false);
 				}
-				if (GameScreen.keyPressed.contains("a")) {
+				if (GameScreen.keyPressed.contains("A")) {
 					turn(true);
 				}
-				if (GameScreen.keyPressed.contains("d")) {
+				if (GameScreen.keyPressed.contains("D")) {
 					turn(false);
+				}
+				if (GameScreen.keyPressed.contains("SPACE")) {
+					shoot();
 				}
 			} else if (color.equals("red")) {
 				if (GameScreen.keyPressed.contains("UP")) {
@@ -101,6 +105,9 @@ public class Tank extends Entity {
 				}
 				if (GameScreen.keyPressed.contains("RIGHT")) {
 					turn(false);
+				}
+				if (GameScreen.keyPressed.contains("ENTER")) {
+					shoot();
 				}
 			}
 		}

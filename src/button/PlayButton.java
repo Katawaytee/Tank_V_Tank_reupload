@@ -4,12 +4,13 @@ import javafx.event.EventHandler;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
 import logic.GameLogic;
+import screen.GameScreen;
 
 public class PlayButton extends MyBaseButton {
 
 	public PlayButton() {
 		super();
-		pictureURL = ClassLoader.getSystemResource("").toString();
+		pictureURL = ClassLoader.getSystemResource("play.png").toString();
 		addPicture();
 		addCircle();
 		addListener();
@@ -37,6 +38,7 @@ public class PlayButton extends MyBaseButton {
 			public void handle(MouseEvent event) {
 				if (GameLogic.getInstance().getRedTank().die() || GameLogic.getInstance().getGreenTank().die()) {
 					GameLogic.getInstance().startNewGame();
+					GameScreen.scene.setRoot(GameScreen.get());
 				} else {
 					GameLogic.getInstance().resumeGame();
 				}

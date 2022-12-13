@@ -78,8 +78,8 @@ public class HomeScreen extends Pane{
 
 			@Override
 			public void handle(MouseEvent arg0) {
-				GameScreen.scene.setRoot(GameScreen.get());
 				GameLogic.getInstance().startNewGame();
+				GameScreen.scene.setRoot(GameScreen.get());
 			}
 		});
 		

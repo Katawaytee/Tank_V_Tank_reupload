@@ -11,7 +11,7 @@ public class HomeButton extends MyBaseButton {
 
 	public HomeButton() {
 		super();
-		pictureURL = ClassLoader.getSystemResource("").toString();
+		pictureURL = ClassLoader.getSystemResource("home.png").toString();
 		addPicture();
 		addCircle();
 		addListener();

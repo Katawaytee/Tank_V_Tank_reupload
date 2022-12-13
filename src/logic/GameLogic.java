@@ -37,17 +37,22 @@ public class GameLogic {
 		gameTimer = new AnimationTimer() {
 			@Override
 			public void handle(long arg0) {
+				GameScreen.get().requestFocus();
+				GameLogic.getInstance().getGameCanvas().getGraphicsContext2D().clearRect(0,0,1080,720);
 				tanks[0].update();
 				tanks[1].update();
 				for (Bullet bullet : bullets) {
 					bullet.update();
 				}
+				GameScreen.keyPressed.remove("ENTER");
+				GameScreen.keyPressed.remove("SPACE");
 			}
 		};
 	}
 
 	public void startNewGame() {
 		instance = null;
+		GameScreen.resetGameScreen();
 		GameLogic.getInstance().gameTimer.start();
 	}
 	
