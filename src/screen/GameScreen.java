@@ -19,6 +19,7 @@ public class GameScreen extends MyBaseScreen {
 	private final String backgroundURL;
 	public static final String greenTankURL = ClassLoader.getSystemResource("icon/greenTank.png").toString();
 	public static final String redTankURL = ClassLoader.getSystemResource("icon/redTank.png").toString();
+	public static final String bombURL = ClassLoader.getSystemResource("icon/bomb.png").toString();
 	private Canvas gameCanvas;
 	private AnchorPane buttonPane;
 	private HeartPane heartPane;

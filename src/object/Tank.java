@@ -10,6 +10,7 @@ public class Tank extends Entity {
 	private int life;
 	private String color;
 	private Image tankImage;
+	private Image bombImage;
 
 	public Tank(double x, double y, String color) {
 		this.x = x;
@@ -23,6 +24,7 @@ public class Tank extends Entity {
 		} else if (color.equals("red")) {
 			tankImage = new Image(GameScreen.redTankURL);
 		}
+		bombImage = new Image(GameScreen.bombURL);
 	}
 
 	public void move(boolean forward) {
@@ -59,11 +61,15 @@ public class Tank extends Entity {
 		GameLogic.getInstance().getBullets().add(newBullet);
 	}
 
-	public void hitByBullet() {
+	public void hitByBullet(GraphicsContext gc) {
 		life--;
 		GameScreen.explosionSound.play();
 		GameScreen.get().getHeartPane().removeHeart(color, life);
 		if (die()) {
+			gc.save();
+			gc.translate(x, y);
+			gc.drawImage(bombImage, -75, -75, 150, 150);
+			gc.restore();
 			GameLogic.getInstance().pauseGame();
 		}
 	}

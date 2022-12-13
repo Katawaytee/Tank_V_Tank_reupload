@@ -36,7 +36,7 @@ public class Bullet extends Entity {
 	
 	private void collide(Tank tank) {
 		destroyed = true;
-		tank.hitByBullet();
+		tank.hitByBullet(GameLogic.getInstance().getGameCanvas().getGraphicsContext2D());
 	}
 	
 	private void draw(GraphicsContext gc) {
