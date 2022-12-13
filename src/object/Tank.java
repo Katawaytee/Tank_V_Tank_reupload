@@ -52,20 +52,43 @@ public class Tank extends Entity {
 	}
 	
 	private void draw(GraphicsContext gc) {
+		gc.save();
 		gc.translate(x, y);
 		gc.drawImage(tankImage, -50, -50, 100, 100);
 		gc.rotate(angle);
+		gc.restore();
 	}
 	
 	public void update() {
 		if (GameScreen.isPressingKey) {
 			if (color.equals("green")) {
-				
+				if (GameScreen.keyPressed.contains("w")) {
+					move(true);
+				}
+				if (GameScreen.keyPressed.contains("s")) {
+					move(false);
+				}
+				if (GameScreen.keyPressed.contains("a")) {
+					turn(true);
+				}
+				if (GameScreen.keyPressed.contains("d")) {
+					turn(false);
+				}
 			} else if (color.equals("red")) {
-				
+				if (GameScreen.keyPressed.contains("UP")) {
+					move(true);
+				}
+				if (GameScreen.keyPressed.contains("DOWN")) {
+					move(false);
+				}
+				if (GameScreen.keyPressed.contains("LEFT")) {
+					turn(true);
+				}
+				if (GameScreen.keyPressed.contains("RIGHT")) {
+					turn(false);
+				}
 			}
 		}
-		
 		draw(GameLogic.getInstance().getGameCanvas().getGraphicsContext2D());
 	}
 	

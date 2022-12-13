@@ -62,7 +62,9 @@ public class GameScreen extends StackPane {
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-				GameScreen.keyPressed.add(event.getCode().toString());
+				if (!GameScreen.keyPressed.contains(event.getCode().toString())) {
+					GameScreen.keyPressed.add(event.getCode().toString());
+				}
 				GameScreen.isPressingKey = true;
 			}
 		});
