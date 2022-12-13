@@ -6,6 +6,8 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import object.Bullet;
 import object.Tank;
+import screen.GameScreen;
+import screen.PauseScreen;
 
 public class GameLogic {
 
@@ -50,6 +52,7 @@ public class GameLogic {
 	
 	public void pauseGame() {
 		gameTimer.stop();
+		GameScreen.get().getChildren().add(new PauseScreen());
 	}
 
 	public Canvas getGameCanvas() {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import button.PauseButton;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -79,10 +78,6 @@ public class GameScreen extends StackPane {
 				GameScreen.isPressingKey = false;
 			}
 		});
-		
-	}
-	
-	public static void addChildren(Node node) {
 		
 	}
 	
