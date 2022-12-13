@@ -62,8 +62,8 @@ public class Bullet extends Entity {
 	private boolean isCollide() {
 		double dx = x - anotherTank.x;
 		double dy = y - anotherTank.y;
-		double dRadian = Math.atan(Math.abs(dy) / Math.abs(dx));
-		double minDistanceBetween = 31.39 / Math.cos(dRadian);
+		double dRadian = Math.atan(dy / dx) % 0.78 ;
+		double minDistanceBetween = 38.5 / Math.cos(dRadian);
 		double currentDistanceBetween = Math.hypot(Math.abs(dx), Math.abs(dy));
 		if (currentDistanceBetween <= minDistanceBetween) {
 			return true;

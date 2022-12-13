@@ -21,6 +21,7 @@ public class GameScreen extends StackPane {
 	public static final String redTankURL = ClassLoader.getSystemResource("redTank.png").toString();
 	private Canvas gameCanvas;
 	private AnchorPane buttonPane;
+	private HeartPane heartPane;
 	public static ArrayList<String> keyPressed = new ArrayList<String>();
 	public static boolean isPressingKey;
 	public static Scene scene;
@@ -34,6 +35,8 @@ public class GameScreen extends StackPane {
 		gameCanvas = GameLogic.getInstance().getGameCanvas();
 		gameCanvas.setVisible(true);
 		getChildren().add(gameCanvas);
+		heartPane = new HeartPane();
+		getChildren().add(heartPane);
 		createButtonPane();
 		addListener();
 		setFocused(true);
@@ -76,7 +79,6 @@ public class GameScreen extends StackPane {
 					GameScreen.keyPressed.add(event.getCode().toString());
 				}
 				GameScreen.isPressingKey = true;
-				System.out.println(keyPressed);
 			}
 		});
 		
@@ -88,6 +90,10 @@ public class GameScreen extends StackPane {
 			}
 		});
 		
+	}
+
+	public HeartPane getHeartPane() {
+		return heartPane;
 	}
 	
 }

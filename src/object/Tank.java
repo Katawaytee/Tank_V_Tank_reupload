@@ -62,6 +62,7 @@ public class Tank extends Entity {
 	public void hitByBullet() {
 		life--;
 		System.out.println(life);
+		GameScreen.get().getHeartPane().removeHeart(color, life);
 		if (die()) {
 			GameLogic.getInstance().pauseGame();
 		}
