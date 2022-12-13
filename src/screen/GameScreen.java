@@ -10,29 +10,28 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import logic.GameLogic;
 
-public class GameScreen extends StackPane {
+public class GameScreen extends MyBaseScreen {
 
 	private static GameScreen gameScreen = null;
 	private final String backgroundURL;
-	public static final String greenTankURL = ClassLoader.getSystemResource("greenTank.png").toString();
-	public static final String redTankURL = ClassLoader.getSystemResource("redTank.png").toString();
+	public static final String greenTankURL = ClassLoader.getSystemResource("icon/greenTank.png").toString();
+	public static final String redTankURL = ClassLoader.getSystemResource("icon/redTank.png").toString();
 	private Canvas gameCanvas;
 	private AnchorPane buttonPane;
 	private HeartPane heartPane;
-	public static AudioClip explosionSound = new AudioClip(ClassLoader.getSystemResource("Explosion.wav").toString());;
+	public static AudioClip explosionSound = new AudioClip(ClassLoader.getSystemResource("audio/Explosion.wav").toString());
 	public static ArrayList<String> keyPressed = new ArrayList<String>();
 	public static boolean isPressingKey;
 	public static Scene scene;
 	
 	private GameScreen() {
 		super();
-		setWidth(1080);
-		setHeight(720);
-		backgroundURL = ClassLoader.getSystemResource("grassBackground.jpg").toString();
+		
+		
+		backgroundURL = ClassLoader.getSystemResource("background/grassBackground.jpg").toString();
 		createBackground();
 		gameCanvas = GameLogic.getInstance().getGameCanvas();
 		gameCanvas.setVisible(true);
@@ -68,7 +67,7 @@ public class GameScreen extends StackPane {
 		PauseButton pauseButton = new PauseButton();
 		buttonPane.getChildren().add(pauseButton);
 		AnchorPane.setTopAnchor(pauseButton,20.0);
-		AnchorPane.setLeftAnchor(pauseButton,515.0);
+		AnchorPane.setLeftAnchor(pauseButton,500.0);
 		getChildren().add(buttonPane);
 	}
 	
@@ -97,5 +96,6 @@ public class GameScreen extends StackPane {
 	public HeartPane getHeartPane() {
 		return heartPane;
 	}
+	
 	
 }

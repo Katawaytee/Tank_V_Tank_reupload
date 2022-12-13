@@ -1,100 +1,60 @@
 package screen;
 
 
-import javafx.event.EventHandler;
-import javafx.scene.Cursor;
+import button.StartButton;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
-import logic.GameLogic;
 
-public class HomeScreen extends Pane{
+public class HomeScreen extends MyBaseScreen{
+	
+	private static HomeScreen homeScreen = null;
 	private final String BackgroundURL;
 	private final String BackgroundMusicURL;
-	private MediaPlayer music;
+	private final MediaPlayer music;
+	public static Scene scene;
 	
-	public HomeScreen(int width, int height) {
+	public HomeScreen() {
 
-		BackgroundURL = ClassLoader.getSystemResource("home/Background.jpg").toString();
+		BackgroundURL = ClassLoader.getSystemResource("background/homeBackground.jpg").toString();
 		BackgroundMusicURL = ClassLoader.getSystemResource("audio/BackgroundMusic.mp3").toString();
+		music = new MediaPlayer(new Media(BackgroundMusicURL));
 		
-		Canvas canvas= new Canvas(width, height);
+		Canvas canvas= new Canvas(getWindowWidth(), getWindowHeight());
 		getChildren().add(canvas);
 		
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 	
-		renderBackground(gc, BackgroundURL);
-		createPlayButton();
-		playBackgroundMusic(BackgroundMusicURL);
+		addBackground(gc, BackgroundURL);
+		createStartButton();
+		playBackgroundMusic();
 		
 	}
 	
-	private void createPlayButton() {
+	private void createStartButton() {
 		// TODO Auto-generated method stub
-		AnchorPane pane = new AnchorPane();
-		pane.setLayoutX(540);
-		pane.setLayoutY(600);
+		AnchorPane anchorPane = new AnchorPane();
+		StartButton startButton = new StartButton();
 		
+		anchorPane.getChildren().add(startButton);
+		AnchorPane.setTopAnchor(startButton, 525.0);
+		AnchorPane.setLeftAnchor(startButton, 470.0);
 		
-		Circle cir = new Circle(50);
-		cir.setFill(Color.BLUE);
-		cir.setStroke(Color.MEDIUMBLUE);
-		cir.setStrokeWidth(8);
-		Polygon poly =  new Polygon(-15,-25,-15,25,25,0); 
-		poly.setFill(Color.CRIMSON);
-		pane.getChildren().addAll(cir,poly);
-		getChildren().add(pane);
-		
-		pane.setOnMouseEntered(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				pane.setCursor(Cursor.HAND);
-				cir.setEffect(new InnerShadow(30, Color.BLACK));
-			}
-		});
-		
-		pane.setOnMouseExited(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				cir.setEffect(null);;
-			}
-		});
-		
-		
-		pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent arg0) {
-				GameLogic.getInstance().startNewGame();
-				GameScreen.scene.setRoot(GameScreen.get());
-				music.stop();
-			}
-		});
-		
+		getChildren().add(anchorPane);
+				
 	}
 
-	private void renderBackground(GraphicsContext gc, String BackgroundURL) {
-		System.out.print(BackgroundURL);
+	private void addBackground(GraphicsContext gc, String BackgroundURL) {
 		Image Background = new Image(BackgroundURL);
 		gc.drawImage(Background, 0, 0);
 	}
 	
-	private void playBackgroundMusic(String url) {
-		music = new MediaPlayer(new Media(url));
+	private void playBackgroundMusic() {
 		music.setOnEndOfMedia(new Runnable() {
 		       public void run() {
 		         music.seek(Duration.ZERO);
@@ -102,4 +62,16 @@ public class HomeScreen extends Pane{
 		   });
 		music.play();
 	}
+	
+	public void stopBackgroundMusic() {
+		music.stop();
+	}
+	
+	public static HomeScreen get() {
+		if(homeScreen==null) {
+			homeScreen = new HomeScreen();
+		}
+		return homeScreen;
+	}
+	
 }

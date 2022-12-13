@@ -12,8 +12,6 @@ public class HeartPane extends AnchorPane {
 	
 	public HeartPane() {
 		super();
-		setWidth(1080);
-		setHeight(720);
 		greenHeartCanvas = createHeartCanvas();
 		redHeartCanvas = createHeartCanvas();
 		getChildren().addAll(greenHeartCanvas, redHeartCanvas);
@@ -26,7 +24,7 @@ public class HeartPane extends AnchorPane {
 	private Canvas createHeartCanvas() {
 		Canvas canvas = new Canvas(160,60);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
-		String heartURL =  ClassLoader.getSystemResource("heart.png").toString();
+		String heartURL =  ClassLoader.getSystemResource("icon/heart.png").toString();
 		Image heartImage = new Image(heartURL);
 		gc.drawImage(heartImage, 0, 5, 50, 50);
 		gc.drawImage(heartImage, 55, 5, 50, 50);

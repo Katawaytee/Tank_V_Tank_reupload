@@ -1,36 +1,73 @@
 package button;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public abstract class MyBaseButton extends StackPane {
 
-	protected String pictureURL;
-	protected Circle circle;
+	private String pictureURL;
+	private Circle circle;
+	private double width;
+	private double height;
 	
-	public MyBaseButton() {
+	public MyBaseButton(double width,double height,String pictureURL) {
 		super();
-		setWidth(50);
-		setHeight(50);
+		this.width=width;
+		this.height=height;
+		this.pictureURL=pictureURL;
+		setWidth(width);
+		setHeight(height);
 		setAlignment(Pos.CENTER);
+		addCircle();
 	}
 	
-	protected void addPicture() {
-		Canvas canvas = new Canvas(50,50);
+	
+	protected void addCircle() {
+		circle = new Circle(width/2,Color.TRANSPARENT);
+		setPicture();
+		getChildren().add(circle);
+		addListener();
+	}
+	
+	private void setPicture() {
+		Canvas canvas = new Canvas(width,height);
 		Image image = new Image(pictureURL);
-		canvas.getGraphicsContext2D().drawImage(image,0,0,50,50);
+		canvas.getGraphicsContext2D().drawImage(image,0,0,width,height);
 		getChildren().add(canvas);
 	}
 	
-	protected void addCircle() {
-		circle = new Circle(25,Color.TRANSPARENT);
-		getChildren().add(circle);
-	}
+	public abstract void handleOnMouseClicked();
 	
-	public abstract void addListener();
+	private void addListener() {
+		circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				circle.setCursor(Cursor.HAND);
+				setEffect(new Glow());
+			}
+		});
+		
+		circle.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				setEffect(null);
+			}
+		});
+		
+		circle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				handleOnMouseClicked();
+			}
+		});
+	};
 	
 }

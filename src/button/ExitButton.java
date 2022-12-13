@@ -1,43 +1,19 @@
 package button;
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
-import javafx.scene.effect.Glow;
-import javafx.scene.input.MouseEvent;
 
 public class ExitButton extends MyBaseButton {
-
+	
+	private static String pictureURL = ClassLoader.getSystemResource("icon/exit.png").toString();
+	
 	public ExitButton() {
-		super();
-		pictureURL = ClassLoader.getSystemResource("exit.png").toString();
-		addPicture();
-		addCircle();
+		super(50,50,pictureURL);
 	}
 
 	@Override
-	public void addListener() {
-		
-		circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				setEffect(new Glow());
-			}
-		});
-		
-		circle.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				setEffect(null);
-			}
-		});
-		
-		circle.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				Platform.exit();
-			}
-		});
-		
+	public void handleOnMouseClicked() {
+		// TODO Auto-generated method stub
+		Platform.exit();
 	}
 	
 }

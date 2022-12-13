@@ -1,45 +1,19 @@
 package button;
 
-import javafx.event.EventHandler;
-import javafx.scene.effect.Glow;
-import javafx.scene.input.MouseEvent;
 import logic.GameLogic;
 
 public class PauseButton extends MyBaseButton {
-
-	public PauseButton() {
-		super();
-		pictureURL = ClassLoader.getSystemResource("pause.png").toString();
-		addPicture();
-		addCircle();
-		addListener();
-	}
 	
+	private static String pictureURL = ClassLoader.getSystemResource("icon/pause.png").toString();
+	
+	public PauseButton() {
+		super(80,80,pictureURL);
+	}
+
 	@Override
-	public void addListener() {
-		
-		circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				setEffect(new Glow());
-			}
-		});
-		
-		circle.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				setEffect(null);
-			}
-		});
-		
-		circle.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				setEffect(null);
-				GameLogic.getInstance().pauseGame();
-			}
-		});
-		
+	public void handleOnMouseClicked() {
+		setEffect(null);
+		GameLogic.getInstance().pauseGame();	
 	}
 	
 }
