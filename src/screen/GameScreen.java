@@ -88,7 +88,9 @@ public class GameScreen extends MyBaseScreen {
 			@Override
 			public void handle(KeyEvent event) {
 				GameScreen.keyPressed.remove(event.getCode().toString());
-				GameScreen.isPressingKey = false;
+				if(GameScreen.keyPressed.isEmpty()) {
+					GameScreen.isPressingKey = false;
+				}
 			}
 		});
 		
