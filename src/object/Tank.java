@@ -61,7 +61,7 @@ public class Tank extends Entity {
 
 	public void hitByBullet() {
 		life--;
-		if (life <= 0) {
+		if (die()) {
 			GameLogic.getInstance().pauseGame();
 		}
 	}
@@ -109,6 +109,10 @@ public class Tank extends Entity {
 
 	public String getColor() {
 		return color;
+	}
+
+	public boolean die() {
+		return life <= 0;
 	}
 	
 }

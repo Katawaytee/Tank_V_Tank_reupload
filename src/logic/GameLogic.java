@@ -47,12 +47,18 @@ public class GameLogic {
 	}
 
 	public void startNewGame() {
-		gameTimer.start();
+		instance = null;
+		GameLogic.getInstance().gameTimer.start();
 	}
 	
 	public void pauseGame() {
 		gameTimer.stop();
 		GameScreen.get().getChildren().add(new PauseScreen());
+	}
+	
+	public void resumeGame() {
+		GameScreen.get().getChildren().remove(3);
+		gameTimer.start();
 	}
 
 	public Canvas getGameCanvas() {

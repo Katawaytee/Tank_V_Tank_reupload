@@ -3,6 +3,7 @@ package button;
 import javafx.event.EventHandler;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
+import logic.GameLogic;
 
 public class PlayButton extends MyBaseButton {
 
@@ -34,7 +35,11 @@ public class PlayButton extends MyBaseButton {
 		circle.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-			// TODO
+				if (GameLogic.getInstance().getRedTank().die() || GameLogic.getInstance().getGreenTank().die()) {
+					GameLogic.getInstance().startNewGame();
+				} else {
+					GameLogic.getInstance().resumeGame();
+				}
 			}
 		});
 		
