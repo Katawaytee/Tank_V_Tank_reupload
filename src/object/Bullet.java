@@ -56,6 +56,7 @@ public class Bullet extends Entity {
 			destroyed = true;
 			return;
 		}
+		move(true);
 		draw(GameLogic.getInstance().getGameCanvas().getGraphicsContext2D());
 	}
 	
