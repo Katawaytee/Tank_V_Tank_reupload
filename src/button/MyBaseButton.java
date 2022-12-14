@@ -26,15 +26,15 @@ public abstract class MyBaseButton extends StackPane {
 		setWidth(width);
 		setHeight(height);
 		setAlignment(Pos.CENTER);
+		setPicture();
 		addCircle();
+		
 	}
 	
 	
 	protected void addCircle() {
 		circle = new Circle(width/2,Color.TRANSPARENT);
-		setPicture();
 		getChildren().add(circle);
-		addListener();
 	}
 	
 	private void setPicture() {
@@ -46,7 +46,7 @@ public abstract class MyBaseButton extends StackPane {
 	
 	public abstract void handleOnMouseClicked();
 	
-	private void addListener() {
+	public void addListener() {
 		circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {

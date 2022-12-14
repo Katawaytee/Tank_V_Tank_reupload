@@ -12,16 +12,16 @@ public class Main extends Application{
 		Application.launch(args);
 	}
 	@Override
-	public void start(Stage PrimaryStage) throws Exception {
+	public void start(Stage primaryStage) throws Exception {
 		
 		
 		GameScreen.scene = new Scene(HomeScreen.get());
-		PrimaryStage.setScene(GameScreen.scene);
-		PrimaryStage.setTitle("Tank V Tank");
+		primaryStage.setScene(GameScreen.scene);
+		primaryStage.setTitle("Tank V Tank");
 
 		
-		PrimaryStage.setResizable(false);
-		PrimaryStage.show();
+		primaryStage.setResizable(false);
+		primaryStage.show();
 	}
 	
 	

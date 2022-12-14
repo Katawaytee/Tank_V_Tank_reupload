@@ -13,8 +13,6 @@ public class TutorialButton extends MyBaseButton {
 		
 	}
 	
-	
-	
 	@Override
 	public void handleOnMouseClicked() {
 		// TODO Auto-generated method stub

@@ -13,29 +13,28 @@ import javafx.scene.text.FontWeight;
 
 public class TutorialScreen extends MyBaseScreen {
 	
-	Canvas canvas;
 	private static TutorialScreen tutorialScreen = null;
-	private final String redTankURL;
-	private final String greenTankURL;
-	private final String backgroundURL;
+	private static String redTankURL=ClassLoader.getSystemResource("icon/redTank.png").toString();;
+	private static String greenTankURL=ClassLoader.getSystemResource("icon/greenTank.png").toString();
+	private static String backgroundURL=ClassLoader.getSystemResource("background/tutorialBackground.jpg").toString();
 	
 	public TutorialScreen() {
 		super();
-		canvas = new Canvas(getWindowWidth(),getWindowHeight());
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		redTankURL=ClassLoader.getSystemResource("icon/redTank.png").toString();;
-		greenTankURL=ClassLoader.getSystemResource("icon/greenTank.png").toString();
-		backgroundURL=ClassLoader.getSystemResource("background/tutorialBackground.jpg").toString();
 
-		setBackground(gc);
+		Canvas canvas = new Canvas(getWindowWidth(),getWindowHeight());
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+
+		addBackground(gc);
 		addPane(gc);
 		addPicture(gc);
 		addText(gc);
-		addButton();
 		
+		getChildren().add(canvas);
+		
+		addButton();
 	}
 	
-	private void setBackground(GraphicsContext gc) {
+	private void addBackground(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		Image background = new Image(backgroundURL); 
 		gc.drawImage(background, 0, 0, 1080,720);
@@ -45,6 +44,8 @@ public class TutorialScreen extends MyBaseScreen {
 		// TODO Auto-generated method stub
 		AnchorPane anchorPane = new AnchorPane();
 		HomeButton homeButton = new HomeButton(80,80);
+		
+		homeButton.addListener();
 		
 		anchorPane.getChildren().add(homeButton);
 		AnchorPane.setTopAnchor(homeButton, 20.0);
@@ -73,6 +74,12 @@ public class TutorialScreen extends MyBaseScreen {
 		TextsPlayer1.add("D : Right Rotate");
 		TextsPlayer1.add("Spacebar : Shoot");
 		
+		int current = 400;
+		for(String text:TextsPlayer1) {
+			gc.fillText(text,285,current);
+			current+=30;
+		}
+		
 		ArrayList<String> TextsPlayer2 = new ArrayList<String>();
 		
 		TextsPlayer2.add("Up : Move Forward");
@@ -80,12 +87,6 @@ public class TutorialScreen extends MyBaseScreen {
 		TextsPlayer2.add("Left : Left Rotate");
 		TextsPlayer2.add("Right : Right Rotate");
 		TextsPlayer2.add("Enter : Shoot");
-		
-		int current = 400;
-		for(String text:TextsPlayer1) {
-			gc.fillText(text,285,current);
-			current+=30;
-		}
 		
 		current = 400;
 		for(String text:TextsPlayer2) {
@@ -121,7 +122,6 @@ public class TutorialScreen extends MyBaseScreen {
 		gc.strokeRoundRect(-350,-250,725,475,30,30);
 		gc.fillRoundRect(-350,-250,725,475,30,30);
 		gc.restore();
-		getChildren().add(canvas);
 	}
 	
 	public static TutorialScreen get() {

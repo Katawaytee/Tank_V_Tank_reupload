@@ -7,11 +7,13 @@ import javafx.scene.layout.AnchorPane;
 
 public class HeartPane extends AnchorPane {
 
-	Canvas greenHeartCanvas;
-	Canvas redHeartCanvas;
+	private Canvas greenHeartCanvas;
+	private Canvas redHeartCanvas;
+	private static String heartURL;
 	
 	public HeartPane() {
 		super();
+		heartURL =  ClassLoader.getSystemResource("icon/heart.png").toString();
 		greenHeartCanvas = createHeartCanvas();
 		redHeartCanvas = createHeartCanvas();
 		getChildren().addAll(greenHeartCanvas, redHeartCanvas);
@@ -24,7 +26,6 @@ public class HeartPane extends AnchorPane {
 	private Canvas createHeartCanvas() {
 		Canvas canvas = new Canvas(160,60);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
-		String heartURL =  ClassLoader.getSystemResource("icon/heart.png").toString();
 		Image heartImage = new Image(heartURL);
 		gc.drawImage(heartImage, 0, 5, 50, 50);
 		gc.drawImage(heartImage, 55, 5, 50, 50);

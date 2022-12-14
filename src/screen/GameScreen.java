@@ -16,7 +16,7 @@ import logic.GameLogic;
 public class GameScreen extends MyBaseScreen {
 
 	private static GameScreen gameScreen = null;
-	private final String backgroundURL;
+	private static String backgroundURL = ClassLoader.getSystemResource("background/grassBackground.jpg").toString();
 	public static final String greenTankURL = ClassLoader.getSystemResource("icon/greenTank.png").toString();
 	public static final String redTankURL = ClassLoader.getSystemResource("icon/redTank.png").toString();
 	public static final String bombURL = ClassLoader.getSystemResource("icon/bomb.png").toString();
@@ -33,14 +33,13 @@ public class GameScreen extends MyBaseScreen {
 		super();
 		
 		
-		backgroundURL = ClassLoader.getSystemResource("background/grassBackground.jpg").toString();
-		createBackground();
+		addBackground();
 		gameCanvas = GameLogic.getInstance().getGameCanvas();
 		gameCanvas.setVisible(true);
 		getChildren().add(gameCanvas);
 		heartPane = new HeartPane();
 		getChildren().add(heartPane);
-		createButtonPane();
+		addButtonPane();
 		addListener();
 		setFocused(true);
 	}
@@ -57,14 +56,14 @@ public class GameScreen extends MyBaseScreen {
 		GameScreen.get();
 	}
 	
-	private void createBackground() {
+	private void addBackground() {
 		ImageView background = new ImageView(new Image(backgroundURL));
 		background.setPreserveRatio(true);
 		background.setFitWidth(1500);
 		getChildren().add(background);
 	}
 	
-	private void createButtonPane() {
+	private void addButtonPane() {
 		buttonPane = new AnchorPane();
 		PauseButton pauseButton = new PauseButton(80,80);
 		buttonPane.getChildren().add(pauseButton);

@@ -1,9 +1,11 @@
 package screen;
 
 
+import java.util.ArrayList;
+
+import button.MyBaseButton;
 import button.StartButton;
 import button.TutorialButton;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -15,35 +17,35 @@ import javafx.util.Duration;
 public class HomeScreen extends MyBaseScreen{
 	
 	private static HomeScreen homeScreen = null;
-	private final String BackgroundURL;
-	private final String BackgroundMusicURL;
-	private final MediaPlayer music;
-	public static Scene scene;
+	private static String backgroundURL = ClassLoader.getSystemResource("background/homeBackground.jpg").toString();;
+	private static String backgroundMusicURL = ClassLoader.getSystemResource("audio/Backgroundmusic.mp3").toString();
+	private MediaPlayer music;
 	
 	public HomeScreen() {
-
-		BackgroundURL = ClassLoader.getSystemResource("background/homeBackground.jpg").toString();
-		BackgroundMusicURL = ClassLoader.getSystemResource("audio/BackgroundMusic.mp3").toString();
-		music = new MediaPlayer(new Media(BackgroundMusicURL));
 		
-		Canvas canvas= new Canvas(getWindowWidth(), getWindowHeight());
-		getChildren().add(canvas);
+		music = new MediaPlayer(new Media(backgroundMusicURL));
 		
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-	
-		addBackground(gc, BackgroundURL);
-		createStartButton();
+		addBackground();
+		addButtons();
 		playBackgroundMusic();
 		
 	}
 	
-	private void createStartButton() {
+	private void addButtons() {
 		// TODO Auto-generated method stub
+		ArrayList<MyBaseButton> buttons = new ArrayList<MyBaseButton>();
 		AnchorPane anchorPane = new AnchorPane();
 		StartButton startButton = new StartButton(125,125);
 		TutorialButton tutorialButton = new TutorialButton(75, 75);
 		
-		anchorPane.getChildren().addAll(startButton,tutorialButton);
+		buttons.add(startButton);
+		buttons.add(tutorialButton);
+		
+		for(MyBaseButton button:buttons) {
+			button.addListener();
+			anchorPane.getChildren().add(button);
+		}
+		
 		AnchorPane.setTopAnchor(startButton, 525.0);
 		AnchorPane.setLeftAnchor(startButton, 470.0);
 		
@@ -54,12 +56,17 @@ public class HomeScreen extends MyBaseScreen{
 				
 	}
 
-	private void addBackground(GraphicsContext gc, String BackgroundURL) {
-		Image Background = new Image(BackgroundURL);
+	private void addBackground() {
+		Canvas canvas= new Canvas(getWindowWidth(), getWindowHeight());	
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+	
+		Image Background = new Image(backgroundURL);
 		gc.drawImage(Background, 0, 0);
+		
+		getChildren().add(canvas);
 	}
 	
-	private void playBackgroundMusic() {
+	public void playBackgroundMusic() {
 		music.setOnEndOfMedia(new Runnable() {
 		       public void run() {
 		         music.seek(Duration.ZERO);

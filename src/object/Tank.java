@@ -5,14 +5,20 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import logic.GameLogic;
 import screen.GameScreen;
+import utility.Controllable;
 
-public class Tank extends Entity {
+public class Tank extends Entity implements Controllable{
 
 	private int life;
 	private String color;
 	private Image tankImage;
 	private Image bombImage;
-	private boolean canShoot;
+	private boolean hasDelay;
+	private String keyUp;
+	private String keyDown;
+	private String keyLeft;
+	private String keyRight;
+	private String keyShoot;
 
 	public Tank(double x, double y, String color) {
 		this.x = x;
@@ -21,11 +27,15 @@ public class Tank extends Entity {
 		speed = 3;
 		life = 3;
 		this.color = color;
-		this.canShoot=true;
+		this.hasDelay=false;
 		if (this.color.equals("green")) {
 			tankImage = new Image(GameScreen.greenTankURL);
-		} else if (color.equals("red")) {
+			setKeyMove("W", "S", "A", "D");
+			setKeyShoot("SPACE");
+		} else if (this.color.equals("red")) {
 			tankImage = new Image(GameScreen.redTankURL);
+			setKeyMove("UP", "DOWN", "LEFT", "RIGHT");
+			setKeyShoot("ENTER");
 		}
 		bombImage = new Image(GameScreen.bombURL);
 	}
@@ -59,7 +69,7 @@ public class Tank extends Entity {
 	}
 
 	public void shoot() {
-		if(canShoot) {
+		if(!hasDelay) {
 			Thread thread = new Thread(() -> {
 				Platform.runLater(new Runnable() {
 					@Override
@@ -73,19 +83,19 @@ public class Tank extends Entity {
 						double radAngle = Math.toRadians(angle);
 						Bullet newBullet = new Bullet(x + (50 * Math.sin(radAngle)), y - (50 * Math.cos(radAngle)), angle - 90, anotherTank);
 						GameLogic.getInstance().getBullets().add(newBullet);
-						canShoot=false;
+						hasDelay=true;
 					}
 				});
 				
 				try {
-					Thread.sleep(750);
+					Thread.sleep(500);
 				} catch (InterruptedException e) {
 					
 				}
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						canShoot=true;
+						hasDelay=false;
 					}
 				});
 					
@@ -119,49 +129,47 @@ public class Tank extends Entity {
 
 	public void update() {
 		if (GameScreen.isPressingKey) {
-			if (color.equals("green")) {
-				if (GameScreen.keyPressed.contains("W")) {
-					move(true);
-				}
-				if (GameScreen.keyPressed.contains("S")) {
-					move(false);
-				}
-				if (GameScreen.keyPressed.contains("A")) {
-					turn(true);
-				}
-				if (GameScreen.keyPressed.contains("D")) {
-					turn(false);
-				}
-				if (GameScreen.keyPressed.contains("SPACE")) {
-					shoot();
-				}
-			} else if (color.equals("red")) {
-				if (GameScreen.keyPressed.contains("UP")) {
-					move(true);
-				}
-				if (GameScreen.keyPressed.contains("DOWN")) {
-					move(false);
-				}
-				if (GameScreen.keyPressed.contains("LEFT")) {
-					turn(true);
-				}
-				if (GameScreen.keyPressed.contains("RIGHT")) {
-					turn(false);
-				}
-				if (GameScreen.keyPressed.contains("ENTER")) {
-					shoot();
-				}
+			if (GameScreen.keyPressed.contains(keyUp)) {
+				move(true);
+			}
+			if (GameScreen.keyPressed.contains(keyDown)) {
+				move(false);
+			}
+			if (GameScreen.keyPressed.contains(keyLeft)) {
+				turn(true);
+			}
+			if (GameScreen.keyPressed.contains(keyRight)) {
+				turn(false);
+			}
+			if (GameScreen.keyPressed.contains(keyShoot)) {
+				shoot();
 			}
 		}
 		draw(GameLogic.getInstance().getGameCanvas().getGraphicsContext2D());
 	}
 
-	public String getColor() {
-		return color;
-	}
+	
 
 	public boolean die() {
 		return life <= 0;
 	}
+
+	@Override
+	public void setKeyMove(String up, String down, String left, String right) {
+		// TODO Auto-generated method stub
+		keyUp=up;
+		keyDown=down;
+		keyLeft=left;
+		keyRight=right;
+	}
+
+	@Override
+	public void setKeyShoot(String shoot) {
+		// TODO Auto-generated method stub
+		keyShoot=shoot;
+	}
 	
+	public String getColor() {
+		return color;
+	}
 }

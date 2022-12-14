@@ -13,7 +13,6 @@ public class PauseButton extends MyBaseButton {
 
 	@Override
 	public void handleOnMouseClicked() {
-		setEffect(null);
 		GameLogic.getInstance().pauseGame();	
 	}
 	
