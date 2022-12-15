@@ -9,7 +9,7 @@ public class HeartPane extends AnchorPane {
 
 	private Canvas greenHeartCanvas;
 	private Canvas redHeartCanvas;
-	private static String heartURL;
+	private final String heartURL;
 	
 	public HeartPane() {
 		super();

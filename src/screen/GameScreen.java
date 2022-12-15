@@ -31,8 +31,6 @@ public class GameScreen extends MyBaseScreen {
 	
 	private GameScreen() {
 		super();
-		
-		
 		addBackground();
 		gameCanvas = GameLogic.getInstance().getGameCanvas();
 		gameCanvas.setVisible(true);

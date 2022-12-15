@@ -17,11 +17,13 @@ import javafx.util.Duration;
 public class HomeScreen extends MyBaseScreen{
 	
 	private static HomeScreen homeScreen = null;
-	private static String backgroundURL = ClassLoader.getSystemResource("background/homeBackground.jpg").toString();;
-	private static String backgroundMusicURL = ClassLoader.getSystemResource("audio/Backgroundmusic.mp3").toString();
+	private final String backgroundURL;
+	private final String backgroundMusicURL;
 	private MediaPlayer music;
 	
-	public HomeScreen() {
+	private HomeScreen() {
+		backgroundURL = ClassLoader.getSystemResource("background/homeBackground.jpg").toString();
+		backgroundMusicURL = ClassLoader.getSystemResource("audio/Backgroundmusic.mp3").toString();
 		
 		music = new MediaPlayer(new Media(backgroundMusicURL));
 		
