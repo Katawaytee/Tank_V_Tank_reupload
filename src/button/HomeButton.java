@@ -15,6 +15,7 @@ public class HomeButton extends MyBaseButton {
 	@Override
 	public void handleOnMouseClicked() {
 		GameScreen.scene.setRoot(HomeScreen.get());
+		HomeScreen.get().playBackgroundMusic();
 	}
 	
 }
