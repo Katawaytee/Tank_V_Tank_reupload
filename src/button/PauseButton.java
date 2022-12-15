@@ -8,7 +8,7 @@ public class PauseButton extends MyBaseButton {
 	
 	public PauseButton(int width,int height) {
 		super(width,height,pictureURL);
-		
+		addListener();
 	}
 
 	@Override
